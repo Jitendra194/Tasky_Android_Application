@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_time"
+        android:enabled="true"
+        android:icon="@drawable/ic_watch_later"
+        android:title="Time"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_day"
+        android:enabled="true"
+        android:icon="@drawable/ic_today"
+        android:title="Day"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_frequency"
+        android:enabled="true"
+        android:icon="@drawable/ic_insert_invitation"
+        android:title="Frequency"
+        app:showAsAction="ifRoom" />
+</menu>

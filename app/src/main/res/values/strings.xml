@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tasky</string>
+
+    <string name="next_reminder_title">Next Reminder</string>
+    <string name="creation_date_title">Created On</string>
+    <string name="tag_dialog">dialog</string>
+    <string name="dialog_transition">dialog_transition</string>
+</resources>

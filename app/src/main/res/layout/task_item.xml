@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.example.android.taskremindercapstone.ui.callbacks.TaskItemClickCallback" />
+
+        <variable
+            name="task"
+            type="com.example.android.taskremindercapstone.model.TaskEntity" />
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:animateLayoutChanges="true"
+        android:background="@android:color/white"
+        android:onClick="@{(view) -> click.onTaskItemClick(view,task)}"
+        android:onLongClick="@{(view) -> click.onTaskItemLongClick(view,task)}"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{task.taskName}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="TAKE MEDICINES RIGHT NOW" />
+
+            <TextView
+                android:id="@+id/task_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{task.taskDescription}"
+                android:textSize="14sp"
+                tools:text="Take Trioptal 450mg and Epilive 300mg medicines right now." />
+
+            <TextView
+                android:id="@+id/remind_next_time_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="5dp"
+                android:gravity="end"
+                android:maxLines="2"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                tools:text="Next reminder:" />
+
+            <TextView
+                android:id="@+id/task_next_remind_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:maxLines="2"
+                android:textSize="12sp"
+                tools:text="Feb 16th 2018 6:15Pm" />
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>
