@@ -130,29 +130,19 @@ public class TaskItemTransform extends Transition {
         scaleX.setDuration(300L);
         setInterpolator(FOSI);
 
-        final Animator translate = ObjectAnimator.ofFloat(
-                view,
-                View.TRANSLATION_X,
-                View.TRANSLATION_Y,
-                fromCard ? getPathMotion().getPath(0, 0, translationX, translationY) :
-                        getPathMotion().getPath(-translationX, -translationY, 0, 0));
-        translate.setDuration(300L);
-        translate.setInterpolator(FOSI);
-
-        AnimatorSet set = new AnimatorSet();
-        set.playTogether(scaleX, scaleY, translate);
-        set.addListener(new Animator.AnimatorListener() {
+        ObjectAnimator alphaEndView = ObjectAnimator.ofFloat(view2, View.ALPHA, 0F, 1F);
+        alphaEndView.setDuration(1000L);
+        alphaEndView.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-
+                if (fromCard) {
+                    view2.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                if (fromCard) {
-                    view.setVisibility(View.GONE);
-                    view2.setVisibility(View.VISIBLE);
-                }
+
             }
 
             @Override
@@ -165,6 +155,42 @@ public class TaskItemTransform extends Transition {
 
             }
         });
+
+        final Animator translate = ObjectAnimator.ofFloat(
+                view,
+                View.TRANSLATION_X,
+                View.TRANSLATION_Y,
+                fromCard ? getPathMotion().getPath(0, 0, translationX, translationY) :
+                        getPathMotion().getPath(-translationX, -translationY, 0, 0));
+        translate.setDuration(300L);
+        translate.setInterpolator(FOSI);
+
+        AnimatorSet set = new AnimatorSet();
+        set.play(scaleX).with(scaleY).with(translate);
+//        set.play(alphaEndView).after(300L);
+//        set.addListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animator) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator animator) {
+//                if (fromCard) {
+//                    view.setVisibility(View.GONE);
+//                }
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animator) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animator) {
+//
+//            }
+//        });
         return set;
     }
 

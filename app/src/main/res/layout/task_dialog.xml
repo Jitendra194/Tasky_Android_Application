@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <data>
+
+        <variable
+            name="editTask"
+            type="com.example.android.taskremindercapstone.ui.callbacks.EditTaskClickCallback" />
+
+
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/task_dialog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:tag="@string/tag_dialog">
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:elevation="5dp"
+            android:onClick="@{() -> editTask.onEditClick()}"
+            android:scaleType="center"
+            android:src="@drawable/ic_mode_edit_24dp"
+            app:layout_anchor="@id/container2"
+            app:layout_anchorGravity="end" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/container2"
@@ -15,44 +35,78 @@
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:background="@android:color/white"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
-            <LinearLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/task_title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Lorem Ipsum"
                     android:textAllCaps="true"
-                    android:textStyle="bold" />
+                    android:textColor="@color/PrimaryText"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="TITLE" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/task_description"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s," />
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/SecondaryText"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/task_title"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/task_title"
+                    tools:text="Description" />
 
+                <TextView
+                    android:id="@+id/task_reminderTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/SecondaryText"
+                    android:textStyle="italic"
+                    app:layout_constraintLeft_toLeftOf="@id/task_description"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/task_description"
+                    tools:text="Next Reminder on 20th Jan 2017" />
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/task_createdOn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/SecondaryText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:text="Created on 15th Jan 2017" />
+
+            </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:id="@+id/container1"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
             android:background="@android:color/white"
-            android:orientation="vertical"
-            android:transitionName="@string/dialog_transition">
+            android:transitionName="@string/dialog_transition"
+            android:visibility="gone">
 
         </android.support.v7.widget.CardView>
 
-
-    </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

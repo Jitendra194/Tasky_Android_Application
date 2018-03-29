@@ -47,7 +47,7 @@ public class DataIOFunctions {
         return taskEntities;
     }
 
-    public static TaskEntity getTask(Context context, int taskId) {
+    public static TaskEntity getTask(Context context, long taskId) {
         Cursor cursor = context.getContentResolver().query(
                 TaskEntry.getTaskIdUri(String.valueOf(taskId)),
                 TASK_PROJECTION,

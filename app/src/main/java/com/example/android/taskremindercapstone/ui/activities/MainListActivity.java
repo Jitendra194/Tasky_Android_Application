@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.taskremindercapstone.R;
-import com.example.android.taskremindercapstone.db.TaskContract;
 import com.example.android.taskremindercapstone.ui.fragments.TaskListFragment;
 
-public class
-MainListActivity extends AppCompatActivity {
+public class MainListActivity extends AppCompatActivity {
 
     private TaskListFragment taskListFragment;
 
@@ -31,8 +29,9 @@ MainListActivity extends AppCompatActivity {
     }
 
     public void start() {
-        Intent intent = new Intent(this, TaskActivity.class);
+        Intent intent = new Intent(this, TaskEditActivity.class);
 //        intent.putExtra(TaskContract.TaskEntry.COLUMN_TASK_CREATION_DATE, taskId);
+        intent.setAction(TaskEditActivity.ACTION_ADD);
         startActivity(intent);
     }
 }

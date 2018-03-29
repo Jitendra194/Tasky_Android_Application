@@ -22,7 +22,7 @@ import com.example.android.taskremindercapstone.db.DataIOFunctions;
 import com.example.android.taskremindercapstone.model.TaskEntity;
 import com.example.android.taskremindercapstone.ui.activities.MainListActivity;
 import com.example.android.taskremindercapstone.ui.adapters.TaskListAdapter;
-import com.example.android.taskremindercapstone.ui.callbacks.FabClickCallback;
+import com.example.android.taskremindercapstone.ui.callbacks.AddNewTaskClickCallback;
 import com.example.android.taskremindercapstone.ui.utilities.SwipeToDelete;
 import com.example.android.taskremindercapstone.ui.utilities.Utils;
 import com.example.android.taskremindercapstone.viewmodel.TaskViewModel;
@@ -86,7 +86,7 @@ public class TaskListFragment extends Fragment implements LoaderManager.LoaderCa
         itemTouchHelper.attachToRecyclerView(mBinding.taskListRecyclerView);
     }
 
-    private final FabClickCallback clickCallback = () -> {
+    private final AddNewTaskClickCallback clickCallback = () -> {
         if (((MainListActivity) getActivity()) != null) {
             ((MainListActivity) getActivity()).start();
         }

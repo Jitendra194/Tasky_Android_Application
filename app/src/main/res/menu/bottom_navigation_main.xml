@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_time"
         android:enabled="true"
-        android:icon="@drawable/ic_watch_later"
+        android:icon="@drawable/ic_watch_later_24dp"
         android:title="Time"
         app:showAsAction="ifRoom" />
     <item

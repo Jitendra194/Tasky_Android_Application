@@ -6,7 +6,6 @@ import android.util.DisplayMetrics;
 
 import com.example.android.taskremindercapstone.model.TaskEntity;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,19 +22,19 @@ public class Utils {
         return (int) (dpWidth / scalingFactor);
     }
 
-    public static int calculateNextItemId(List<TaskEntity> taskEntities) {
-        if (taskEntities.size() == 0) {
-            return taskEntities.size();
-        } else {
-            taskEntities.sort(Comparator.comparing(TaskEntity::getTaskCreation).reversed());
-            for (int i = 0; i < taskEntities.size(); i++) {
-                if (i != taskEntities.get(taskEntities.size() - (i + 1)).getTaskCreation()) {
-                    return i;
-                }
-            }
-        }
-        return taskEntities.size();
-    }
+//    public static int calculateNextItemId(List<TaskEntity> taskEntities) {
+//        if (taskEntities.size() == 0) {
+//            return taskEntities.size();
+//        } else {
+//            taskEntities.sort(Comparator.comparing(TaskEntity::getTaskCreation).reversed());
+//            for (int i = 0; i < taskEntities.size(); i++) {
+//                if (i != taskEntities.get(taskEntities.size() - (i + 1)).getTaskCreation()) {
+//                    return i;
+//                }
+//            }
+//        }
+//        return taskEntities.size();
+//    }
 
     public static DiffUtil.DiffResult getDiffResult(List<? extends TaskEntity> mTasks,
                                                     List<? extends TaskEntity> tasks) {
@@ -66,5 +65,9 @@ public class Utils {
             }
         });
         return result;
+    }
+
+    public static boolean validateReminder(long chosenReminder) {
+        return chosenReminder >= DateAndTimeUtils.getCurrentMillis();
     }
 }

@@ -37,8 +37,33 @@ public class DateAndTimeUtils {
         return mTaskDate;
     }
 
+    public static String getFormattedTime(String taskTime) {
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("HH:mm", Locale.getDefault());
+        try {
+            Date date = simpleDateFormat.parse(taskTime);
+            return DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getFormattedDate(String taskDate) {
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault());
+        try {
+            Date date = simpleDateFormat.parse(taskDate);
+            return DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String showTime(Context context,
                                   TimePickerDialog.OnTimeSetListener onTimeSetListener) {
+        calendar.setTimeInMillis(System.currentTimeMillis());
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         TimePickerDialog timePickerDialog = new TimePickerDialog(context,
@@ -49,6 +74,7 @@ public class DateAndTimeUtils {
 
     public static String showCalendar(Context context,
                                       DatePickerDialog.OnDateSetListener onDateSetListener) {
+        calendar.setTimeInMillis(System.currentTimeMillis());
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -61,7 +87,11 @@ public class DateAndTimeUtils {
     public static String getNextReminderDateAndTime(long millis) {
         String[] dateAndTime = convertMillisToDateAndTime(millis);
         return dateAndTime[0] + " " + dateAndTime[1];
+    }
 
+    public static String[] getFormattedDateAndTimeFromMillisSeparately(long millis) {
+        String[] dateAndTime = convertMillisToDateAndTime(millis);
+        return dateAndTime;
     }
 
     public static long convertDateAndTimeToMillis(String mDate, String mTime) {
@@ -101,11 +131,11 @@ public class DateAndTimeUtils {
         return dateAndTime;
     }
 
-    public static long getCreationMillis() {
+    public static long getCurrentMillis() {
         return System.currentTimeMillis();
     }
 
     public static long getSnoozeWindow() {
-        return System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5);
+        return getCurrentMillis() + TimeUnit.MINUTES.toMillis(5);
     }
 }

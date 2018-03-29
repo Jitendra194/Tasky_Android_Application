@@ -32,7 +32,7 @@ public class TaskViewModel {
         return dataRepository.getTasks(cursor);
     }
 
-    public TaskEntity loadTask(int taskId) {
+    public TaskEntity loadTask(long taskId) {
         return dataRepository.getTask(taskId);
     }
 

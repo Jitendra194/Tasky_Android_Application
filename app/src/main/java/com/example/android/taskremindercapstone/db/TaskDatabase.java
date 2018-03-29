@@ -38,7 +38,7 @@ public class TaskDatabase {
         return DataIOFunctions.getTasks(cursor);
     }
 
-    public TaskEntity loadTask(int taskId) {
+    public TaskEntity loadTask(long taskId, AppExecutors executors) {
         return DataIOFunctions.getTask(context, taskId);
     }
 

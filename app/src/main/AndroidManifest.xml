@@ -10,26 +10,20 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true">
         <activity
             android:name=".ui.activities.MainListActivity"
             android:launchMode="singleTop"
-            android:theme="@style/MainTaskListActivityTheme">
+            android:theme="@style/AppTheme.MainTaskListActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.TaskActivity"
-            android:parentActivityName=".ui.activities.MainListActivity"
-            android:theme="@style/TaskActivityTheme">
-
-        </activity>
-        <activity
             android:name=".ui.activities.TaskDialogActivity"
-            android:theme="@style/TaskDialog" />
+            android:theme="@style/AppTheme.TaskDialog" />
 
         <service
             android:name=".background.NotificationJobService"
@@ -48,6 +42,14 @@
             android:exported="false" />
 
         <receiver android:name=".background.alarms.AlarmReceiver" />
+
+        <activity
+            android:name=".ui.activities.TaskEditActivity"
+            android:parentActivityName=".ui.activities.MainListActivity"
+            android:theme="@style/AppTheme.TaskEditActivity" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

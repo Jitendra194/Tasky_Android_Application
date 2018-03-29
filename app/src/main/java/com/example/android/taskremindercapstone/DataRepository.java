@@ -26,8 +26,8 @@ public class DataRepository {
         return taskDatabase.loadTasks(cursor);
     }
 
-    public TaskEntity getTask(int taskId) {
-        return taskDatabase.loadTask(taskId);
+    public TaskEntity getTask(long taskId) {
+        return taskDatabase.loadTask(taskId, executors);
     }
 
     public void insertTask(TaskEntity taskEntity) {
