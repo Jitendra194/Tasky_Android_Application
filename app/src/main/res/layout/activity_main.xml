@@ -4,7 +4,7 @@
     android:id="@+id/fragment_task_list_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.taskremindercapstone.ui.activities.MainListActivity">
+    tools:context="com.example.android.taskreminder.ui.activities.MainListActivity">
 
 </FrameLayout>
 

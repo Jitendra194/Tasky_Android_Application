@@ -4,7 +4,7 @@
 
         <variable
             name="fabClick"
-            type="com.example.android.taskremindercapstone.ui.callbacks.AddNewTaskClickCallback" />
+            type="com.example.android.taskreminder.ui.callbacks.AddNewTaskClickCallback" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"

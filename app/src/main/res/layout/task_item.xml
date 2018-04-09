@@ -5,11 +5,11 @@
 
         <variable
             name="click"
-            type="com.example.android.taskremindercapstone.ui.callbacks.TaskItemClickCallback" />
+            type="com.example.android.taskreminder.ui.callbacks.TaskItemClickCallback" />
 
         <variable
             name="task"
-            type="com.example.android.taskremindercapstone.model.TaskEntity" />
+            type="com.example.android.taskreminder.model.TaskEntity" />
     </data>
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"

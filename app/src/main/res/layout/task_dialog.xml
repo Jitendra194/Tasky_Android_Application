@@ -6,7 +6,7 @@
 
         <variable
             name="editTask"
-            type="com.example.android.taskremindercapstone.ui.callbacks.EditTaskClickCallback" />
+            type="com.example.android.taskreminder.ui.callbacks.EditTaskClickCallback" />
 
 
     </data>
