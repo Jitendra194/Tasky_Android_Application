@@ -4,6 +4,7 @@ package com.example.android.taskreminder.ui.fragments;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -104,6 +105,7 @@ public class TaskListFragment extends Fragment implements LoaderManager.LoaderCa
         };
     }
 
+    @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(), DataIOFunctions.taskUri,
@@ -114,7 +116,7 @@ public class TaskListFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         if (data != null) {
             List<TaskEntity> taskEntities = viewModel.loadTasks(data);
             setListData(taskEntities);
@@ -123,7 +125,7 @@ public class TaskListFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
     }
 }
