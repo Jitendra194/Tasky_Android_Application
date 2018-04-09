@@ -1,0 +1,68 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fabClick"
+            type="com.example.android.taskremindercapstone.ui.callbacks.AddNewTaskClickCallback" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragmentTaskEdit_coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/fragmentTaskEdit_appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:titleEnabled="false">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/fragmentTaskEdit_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:titleEnabled="false" />
+
+                <include
+                    android:id="@+id/appbar_title_layout"
+                    layout="@layout/fragment_edit_screen_appbar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="?android:attr/actionBarSize"
+                    android:layout_marginTop="?android:attr/actionBarSize" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <include
+                android:id="@+id/extra_details"
+                layout="@layout/fragment_edit_screen_extra_details"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fragmentTaskEdit_fab"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> fabClick.onFabClick()}"
+            android:scaleType="center"
+            android:src="@drawable/ic_done_24"
+            app:layout_anchor="@id/fragmentTaskEdit_appBar"
+            app:layout_anchorGravity="bottom|end" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

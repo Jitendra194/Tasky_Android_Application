@@ -1,0 +1,59 @@
+<layout>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragmentTaskEdit_taskTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="75dp"
+            android:text="Task"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/fragmentTaskEdit_taskTitle_editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="2"
+            android:textSize="30dp"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_taskTitle"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_taskTitle"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_taskTitle" />
+
+        <TextView
+            android:id="@+id/fragmentTaskEdit_nextReminderTitle1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Created on"
+            android:textColor="@color/colorAccent"
+            android:textStyle="italic"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_taskTitle_editText"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_taskTitle_editText"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_taskTitle_editText"
+            tools:text="Next reminder on" />
+
+        <TextView
+            android:id="@+id/fragmentTaskEdit_nextReminderTitle_nextReminderDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="7:05 PM Mar 20, 2018"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_nextReminderTitle1"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_nextReminderTitle1"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_nextReminderTitle1" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

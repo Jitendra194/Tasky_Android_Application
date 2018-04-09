@@ -2,7 +2,6 @@ package com.example.android.taskremindercapstone.ui.adapters;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

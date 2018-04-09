@@ -97,7 +97,7 @@ public class DateAndTimeUtils {
     public static long convertDateAndTimeToMillis(String mDate, String mTime) {
         String timeAndDate = mTime + " " + mDate;
         SimpleDateFormat dateFormat =
-                new SimpleDateFormat("HH:mm MM-dd-yyyy", Locale.getDefault());
+                new SimpleDateFormat("HH:mm aa MM-dd-yyyy", Locale.getDefault());
         try {
             Date date = dateFormat.parse(timeAndDate);
             return date.getTime();

@@ -1,0 +1,249 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="itemClick"
+            type="com.example.android.taskremindercapstone.ui.callbacks.SetTimeCallback" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragmentTaskEdit_descriptionTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fragmentTaskEdit_descriptionTitle_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:justificationMode="inter_word"
+            android:text="@string/demo_text"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_descriptionTitle"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_descriptionTitle"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_descriptionTitle" />
+
+        <EditText
+            android:id="@+id/fragmentTaskEdit_descriptionTitle_editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="5"
+            android:hint="Enter Description"
+            android:textSize="17sp"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_descriptionTitle"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_descriptionTitle"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_descriptionTitle" />
+
+        <TextView
+            android:id="@+id/fragmentTaskEdit_ReminderSectionTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Reminder"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_descriptionTitle_editText"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_descriptionTitle_editText"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_descriptionTitle_editText" />
+
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/item_1"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginTop="5dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> itemClick.itemOneClick()}"
+            app:layout_constraintLeft_toLeftOf="@id/fragmentTaskEdit_ReminderSectionTitle"
+            app:layout_constraintRight_toRightOf="@id/fragmentTaskEdit_ReminderSectionTitle"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskEdit_ReminderSectionTitle">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="36dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_watch_later_48"
+                android:tint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/guideline"
+                app:layout_constraintTop_toTopOf="@id/guideline" />
+
+            <TextView
+                android:id="@+id/fesi1_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingEnd="0dp"
+                android:paddingStart="56dp"
+                android:text="Time"
+                android:textColor="@color/PrimaryText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/guideline"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Select time to remind" />
+
+            <TextView
+                android:id="@+id/fesi1_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingEnd="0dp"
+                android:paddingStart="56dp"
+                android:text="7:05 PM"
+                android:textColor="@color/SecondaryText"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline"
+                tools:text="7:05 PM" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/item_2"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> itemClick.itemTwoClick()}"
+            app:layout_constraintLeft_toLeftOf="@id/item_1"
+            app:layout_constraintRight_toRightOf="@id/item_1"
+            app:layout_constraintTop_toBottomOf="@id/item_1">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="36dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_today_48"
+                android:tint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="@id/guideline2" />
+
+            <TextView
+                android:id="@+id/fesi2_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingEnd="0dp"
+                android:paddingStart="56dp"
+                android:text="Date"
+                android:textColor="@color/PrimaryText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/guideline2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Select date to remind" />
+
+            <TextView
+                android:id="@+id/fesi2_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingEnd="0dp"
+                android:paddingStart="56dp"
+                android:text="Mar 20, 2018"
+                android:textColor="@color/SecondaryText"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline2"
+                tools:text="Mar 20, 2018" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/item_3"
+
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> itemClick.itemThreeClick()}"
+            app:layout_constraintLeft_toLeftOf="@id/item_2"
+            app:layout_constraintRight_toRightOf="@id/item_2"
+            app:layout_constraintTop_toBottomOf="@id/item_2">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="36dp" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_insert_invitation_48"
+                android:tint="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/guideline3"
+                app:layout_constraintTop_toTopOf="@id/guideline3" />
+
+            <TextView
+                android:id="@+id/fesi3_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingEnd="0dp"
+                android:paddingStart="56dp"
+                android:text="Interval"
+                android:textColor="@color/PrimaryText"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/guideline3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Select interval" />
+
+            <TextView
+                android:id="@+id/fesi3_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingEnd="0dp"
+                android:paddingStart="56dp"
+                android:text="Every 48 hours"
+                android:textColor="@color/SecondaryText"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline3"
+                tools:text="Every 48 hours" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
