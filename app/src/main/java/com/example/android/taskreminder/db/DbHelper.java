@@ -13,7 +13,7 @@ import com.example.android.taskreminder.db.TaskContract.TaskEntry;
 public class DbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "database";
-    private static final int DATABASE_VERSION = 31
+    private static final int DATABASE_VERSION = 32
             ;
 
     private static final String CREATE_TASK_TABLE = "CREATE TABLE " + TaskEntry.TABLE_NAME + " (" +

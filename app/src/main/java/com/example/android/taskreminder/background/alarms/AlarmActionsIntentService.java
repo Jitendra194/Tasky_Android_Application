@@ -44,11 +44,11 @@ public class AlarmActionsIntentService extends JobIntentService {
         }
         ((BaseApplication) getApplication())
                 .getRepository()
-                .updateTask(getApplicationContext(),taskEntity);
+                .updateTask(taskEntity);
     }
 
     private void getExtrasFromIntent(Intent intent) {
-        taskId_creationDate = intent.getExtras().getLong(AlarmManagerClass.TASK_ID);
+        taskId_creationDate = Objects.requireNonNull(intent.getExtras()).getLong(AlarmManagerClass.TASK_ID);
         taskSnoozeWindow = intent.getExtras().getLong(AlarmManagerClass.TASK_SNOOZE_WINDOW);
         taskName = intent.getExtras().getString(AlarmManagerClass.TASK_NAME);
         taskDescription = intent.getExtras().getString(AlarmManagerClass.TASK_DESCRIPTION);

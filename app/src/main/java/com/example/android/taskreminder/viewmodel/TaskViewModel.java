@@ -45,6 +45,11 @@ public class TaskViewModel {
         dataRepository.deleteTask(taskTId);
     }
 
+
+    public void updateTask(TaskEntity taskEntity) {
+        dataRepository.updateTask(taskEntity);
+    }
+
     public BackgroundTaskUtils getBackgroundTaskUtils() {
         return backgroundTaskUtils;
     }

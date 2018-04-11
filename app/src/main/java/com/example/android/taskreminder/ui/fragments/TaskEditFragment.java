@@ -42,6 +42,7 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
     public static final String TAG = TaskEditFragment.class.getSimpleName();
     public static final int LOADER_ID_ADD = 1;
     public static final int LOADER_ID_EDIT = 2;
+    private boolean task = false;
     private FragmentTaskEditBinding mBinding;
     private String mDate;
     private String mTime;
@@ -55,14 +56,24 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
             new AddNewTaskClickCallback() {
                 @Override
                 public void onFabClick() {
-                    if (mTime == null) {
+                    if (TextUtils.isEmpty(mBinding.appbarTitleLayout
+                            .fragmentTaskEditTaskTitleEditText.getText())) {
+                        Snackbar.make(mBinding.fragmentTaskEditCoordinatorLayout,
+                                "Please enter a task name",
+                                Snackbar.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    setTimeAndDateBindings();
+
+                    if (mTime == null || mTime.equals("Not Set")) {
                         Log.v("DATE", "Date is null!");
                         Snackbar.make(mBinding.fragmentTaskEditCoordinatorLayout,
                                 "Please select time to remind",
                                 Snackbar.LENGTH_LONG).show();
                         return;
                     }
-                    if (mDate == null) {
+                    if (mDate == null || mDate.equals("Not Set")) {
                         Snackbar.make(mBinding.fragmentTaskEditCoordinatorLayout,
                                 "Please select the date to remind",
                                 Snackbar.LENGTH_LONG).show();
@@ -70,7 +81,11 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
                     }
                     if (Utils.validateReminder(DateAndTimeUtils
                             .convertDateAndTimeToMillis(mDate, mTime))) {
-                        saveTask();
+                        if (!task) {
+                            insertTask();
+                        } else {
+                            updateTask();
+                        }
                     } else {
                         Snackbar.make(mBinding.fragmentTaskEditCoordinatorLayout,
                                 "Reminder cannot be set in the past!",
@@ -79,17 +94,20 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
                 }
             };
 
+    private void setTimeAndDateBindings() {
+        mTime = mBinding.extraDetails.fesi1Subtitle.getText().toString();
+        mDate = mBinding.extraDetails.fesi2Subtitle.getText().toString();
+    }
+
     private SetTimeCallback setTimeCallback =
             new SetTimeCallback() {
                 @Override
                 public void itemOneClick() {
                     TimePickerDialog.OnTimeSetListener onTimeSetListener =
                             (view, hourOfDay, minute) -> {
-                                mTime = DateAndTimeUtils
-                                        .getFormattedTime(DateAndTimeUtils.getTime(hourOfDay, minute));
                                 mBinding.extraDetails.fesi1Subtitle
-                                        .setText(mTime);
-                                Log.v("TIME", mTime);
+                                        .setText(DateAndTimeUtils
+                                                .getFormattedTime(DateAndTimeUtils.getTime(hourOfDay, minute)));
 //                                setNextReminderAppbarTitle();
                             };
                     DateAndTimeUtils.showTime(getContext(), onTimeSetListener);
@@ -99,11 +117,10 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
                 public void itemTwoClick() {
                     DatePickerDialog.OnDateSetListener onDateSetListener =
                             (view, year, month, dayOfMonth) -> {
-                                mDate = DateAndTimeUtils.getDate(year, month + 1, dayOfMonth);
                                 mBinding.extraDetails.fesi2Subtitle
-                                        .setText(DateAndTimeUtils.getFormattedDate(mDate));
+                                        .setText(DateAndTimeUtils
+                                                .getFormattedDate(DateAndTimeUtils.getDate(year, month + 1, dayOfMonth)));
 //                                setNextReminderAppbarTitle();
-                                Log.v(TAG, mDate);
                             };
                     DateAndTimeUtils.showCalendar(getContext(), onDateSetListener);
                 }
@@ -126,7 +143,39 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initializeViewModel();
+
+        Bundle bundle = getArguments();
+        validateBundleAction(bundle);
+    }
+
+    private void validateBundleAction(Bundle bundle) {
+        if (bundle != null) {
+            if (Objects.equals(bundle
+                    .getString(TaskEditActivity.GET_ACTION), TaskEditActivity.ACTION_ADD)) {
+                if (task) {
+                    task = false;
+                }
+                callLoader(LOADER_ID_ADD, bundle);
+
+            } else if (Objects.equals(bundle
+                    .getString(TaskEditActivity.GET_ACTION), TaskEditActivity.ACTION_EDIT)) {
+                if (!task) {
+                    task = true;
+                }
+                callLoader(LOADER_ID_EDIT, bundle);
+            }
+        }
+    }
+
+    private void callLoader(int id, Bundle bundle) {
+        getLoaderManager().initLoader(id, bundle, this).forceLoad();
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_task_edit,
                 container, false);
@@ -139,7 +188,7 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     private void initializeViewModel() {
-        viewModel = new TaskViewModel(getActivity().getApplication());
+        viewModel = new TaskViewModel(Objects.requireNonNull(getActivity()).getApplication());
     }
 
     private void setActionbar() {
@@ -187,47 +236,29 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
 //                .setText(timeAndDate);
 //    }
 
-    private void saveTask() {
-
-        if (!TextUtils.isEmpty(mBinding.appbarTitleLayout.fragmentTaskEditTaskTitleEditText.getText())) {
-
-            TaskEntity taskEntity = new TaskEntity(
-                    mBinding.appbarTitleLayout.fragmentTaskEditTaskTitleEditText.getText().toString(),
-                    mBinding.extraDetails.fragmentTaskEditDescriptionTitleEditText.getText().toString(),
-                    DateAndTimeUtils.convertDateAndTimeToMillis(mDate, mTime),
-                    DateAndTimeUtils.getCurrentMillis());
-            viewModel.insertTask(taskEntity);
-            getActivity().finish();
-        } else {
-            Toast.makeText(getContext(), "EMPTY", Toast.LENGTH_SHORT).show();
-        }
-
+    private void insertTask() {
+        //ToDo: Design a widget ASAP
+        viewModel.insertTask(getTaskEntity(
+                DateAndTimeUtils.convertDateAndTimeToMillis(
+                        DateAndTimeUtils
+                                .getNextReminderDateAndTime(DateAndTimeUtils.getCurrentMillis()))));
+        Objects.requireNonNull(getActivity()).finish();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initializeViewModel();
-
-        Bundle bundle = getArguments();
-        validateBundleAction(bundle);
+    private void updateTask() {
+        viewModel.updateTask(getTaskEntity(DateAndTimeUtils.convertDateAndTimeToMillis(
+                mBinding.appbarTitleLayout
+                        .fragmentTaskEditNextReminderTitleNextReminderDetails
+                        .getText().toString())));
+        Objects.requireNonNull(getActivity()).finish();
     }
 
-    private void validateBundleAction(Bundle bundle) {
-        if (bundle != null) {
-            if (Objects.equals(bundle
-                    .getString(TaskEditActivity.GET_ACTION), TaskEditActivity.ACTION_ADD)) {
-                callLoader(LOADER_ID_ADD, bundle);
-
-            } else if (Objects.equals(bundle
-                    .getString(TaskEditActivity.GET_ACTION), TaskEditActivity.ACTION_EDIT)) {
-                callLoader(LOADER_ID_EDIT, bundle);
-            }
-        }
-    }
-
-    private void callLoader(int id, Bundle bundle) {
-        getLoaderManager().initLoader(id, bundle, this).forceLoad();
+    private TaskEntity getTaskEntity(long creationTime) {
+        return new TaskEntity(
+                mBinding.appbarTitleLayout.fragmentTaskEditTaskTitleEditText.getText().toString(),
+                mBinding.extraDetails.fragmentTaskEditDescriptionTitleEditText.getText().toString(),
+                DateAndTimeUtils.convertDateAndTimeToMillis(mDate, mTime),
+                creationTime);
     }
 
     @NonNull
@@ -256,7 +287,6 @@ public class TaskEditFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     private void setFragmentLayoutEdit(TaskEntity taskEntity) {
-
         if (mBinding.appbarTitleLayout.fragmentTaskEditNextReminderTitle1.getVisibility() == View.GONE) {
             mBinding.appbarTitleLayout.fragmentTaskEditNextReminderTitle1.setVisibility(View.VISIBLE);
             mBinding.appbarTitleLayout.fragmentTaskEditNextReminderTitleNextReminderDetails.setVisibility(View.VISIBLE);

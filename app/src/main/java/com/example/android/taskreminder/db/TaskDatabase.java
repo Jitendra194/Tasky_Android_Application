@@ -42,7 +42,7 @@ public class TaskDatabase {
         return DataIOFunctions.getTask(context, taskId);
     }
 
-    public void updateTask(Context context, TaskEntity taskEntity) {
-        DataIOFunctions.updateTask(context, taskEntity);
+    public void updateTask(TaskEntity taskEntity, AppExecutors appExecutors) {
+        appExecutors.diskIO().execute(() -> DataIOFunctions.updateTask(context, taskEntity));
     }
 }

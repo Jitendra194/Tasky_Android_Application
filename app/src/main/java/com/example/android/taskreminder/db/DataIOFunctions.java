@@ -64,25 +64,22 @@ public class DataIOFunctions {
 
     public static void deleteTask(Context context, long taskId) {
         int deletedRows = context.getContentResolver()
-                .delete(getSpecificTaskUri(taskId), null, null);
+                .delete(TaskEntry.getTaskIdUri(String.valueOf(taskId)), null, null);
     }
 
     public static void updateTask(Context context, TaskEntity taskEntity) {
         ContentValues values = new ContentValues();
+        values.put(TaskEntry.COLUMN_TASK_NAME, taskEntity.getTaskName());
+        values.put(TaskEntry.COLUMN_TASK_DESCRIPTION, taskEntity.getTaskDescription());
         values.put(TaskEntry.COLUMN_TASK_TIME_AND_DATE, taskEntity.getTaskTimeAndDate());
+        values.put(TaskEntry.COLUMN_TASK_CREATION_DATE, taskEntity.getTaskCreation());
         int updatedRows = context.getContentResolver().update(
-                getSpecificTaskUri(taskEntity.getTaskCreation()),
+                TaskEntry.getTaskIdUri(String.valueOf(taskEntity.getTaskCreation())),
                 values,
                 null,
                 null
         );
         Log.v("UPDATE", String.valueOf(updatedRows));
-    }
-
-    public static Uri getSpecificTaskUri(long taskId) {
-        return taskUri.buildUpon()
-                .appendPath(String.valueOf(taskId))
-                .build();
     }
 
     private static TaskEntity setTaskData(Cursor cursor) {

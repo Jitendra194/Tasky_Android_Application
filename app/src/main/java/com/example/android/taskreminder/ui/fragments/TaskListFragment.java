@@ -29,6 +29,7 @@ import com.example.android.taskreminder.ui.utilities.Utils;
 import com.example.android.taskreminder.viewmodel.TaskViewModel;
 
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -108,7 +109,7 @@ public class TaskListFragment extends Fragment implements LoaderManager.LoaderCa
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getContext(), DataIOFunctions.taskUri,
+        return new CursorLoader(Objects.requireNonNull(getContext()), DataIOFunctions.taskUri,
                 DataIOFunctions.TASK_PROJECTION,
                 null,
                 null,

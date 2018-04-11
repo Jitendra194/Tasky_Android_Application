@@ -1,6 +1,5 @@
 package com.example.android.taskreminder;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import com.example.android.taskreminder.db.TaskDatabase;
@@ -38,7 +37,7 @@ public class DataRepository {
         taskDatabase.deleteTask(taskId, executors);
     }
 
-    public void updateTask(Context context, TaskEntity taskEntity) {
-        taskDatabase.updateTask(context, taskEntity);
+    public void updateTask(TaskEntity taskEntity) {
+        taskDatabase.updateTask(taskEntity, executors);
     }
 }

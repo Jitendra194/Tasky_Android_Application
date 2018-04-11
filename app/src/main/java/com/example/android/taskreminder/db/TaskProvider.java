@@ -28,10 +28,10 @@ public class TaskProvider extends ContentProvider {
     private static UriMatcher buildUriMatcher() {
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = TaskContract.CONTENT_AUTHORITY;
-//        uriMatcher.addURI(authority, ContractClass.PATH_RESTAURANT_TABLE + "/#", CODE_RESTAURANT_ID);
 
         uriMatcher.addURI(authority, TaskContract.PATH_TASK_TABLE, CODE_TASK);
         uriMatcher.addURI(authority, TaskContract.PATH_TASK_TABLE + "/#", CODE_TASK_ID);
+
         return uriMatcher;
     }
 

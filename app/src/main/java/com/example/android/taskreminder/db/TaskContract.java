@@ -10,7 +10,7 @@ import android.provider.BaseColumns;
 public class TaskContract {
 
     public static final String CONTENT_AUTHORITY =
-            "com.example.android.taskremindercapstone";
+            "com.example.android.taskreminder";
 
     private static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 

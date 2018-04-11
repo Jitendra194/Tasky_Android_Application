@@ -7,7 +7,7 @@
     <string name="dialog_transition">dialog_transition</string>
 
     <string name="demo_text">Lorem ipsum dolor sit amet, at vis sensibus dissentias scribentur, eu eam minimum maluisset. Ceteros insolens intellegebat per</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit_screen_val_not_set">Not Set</string>
 </resources>

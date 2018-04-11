@@ -90,16 +90,23 @@ public class DateAndTimeUtils {
     }
 
     public static String[] getFormattedDateAndTimeFromMillisSeparately(long millis) {
-        String[] dateAndTime = convertMillisToDateAndTime(millis);
-        return dateAndTime;
+        return convertMillisToDateAndTime(millis);
     }
 
     public static long convertDateAndTimeToMillis(String mDate, String mTime) {
         String timeAndDate = mTime + " " + mDate;
+        return toMillis(timeAndDate);
+    }
+
+    public static long convertDateAndTimeToMillis(String mDateAndTime) {
+        return toMillis(mDateAndTime);
+    }
+
+    private static long toMillis(String mDateAndTime) {
         SimpleDateFormat dateFormat =
-                new SimpleDateFormat("HH:mm aa MM-dd-yyyy", Locale.getDefault());
+                new SimpleDateFormat("hh:mm aa MMM dd, yyyy", Locale.getDefault());
         try {
-            Date date = dateFormat.parse(timeAndDate);
+            Date date = dateFormat.parse(mDateAndTime);
             return date.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
